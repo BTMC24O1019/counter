@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel & Tourism Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const name = localStorage.getItem("userName");
+            if (!name) {
+                window.location.href = "index.html";
+            } else {
+                initializeGreeting(name);
+            }
+        });
+
+        function initializeGreeting(name) {
+            const greetings = [
+                `नमस्ते, ${name}`,
+                `வணக்கம், ${name}`,
+                `నమస్కారం, ${name}`,
+                `ನಮಸ್ಕಾರ, ${name}`,
+                `নমস্কার, ${name}`,
+                `ਸਤ ਸ੍ਰੀ ਅਕਾਲ, ${name}`,
+                `നമസ്കാരം, ${name}`,
+                `નમસ્તે, ${name}`,
+                `ନମସ୍କାର, ${name}`,
+                `ହନ୍ଦିଆ, ${name}`
+            ];
+            
+            let index = -1;
+            function updateGreeting() {
+                if (index === -1) {
+                    document.getElementById("greeting").innerText = `Hello, ${name}`;
+                    index++;
+                } else {
+                    document.getElementById("greeting").innerText = greetings[index];
+                    index = (index + 1) % greetings.length;
+                }
+            }
+            
+            setInterval(updateGreeting, 5000);
+            updateGreeting();
+        }
+    </script>
+</head>
+<body class="bg-cover bg-center h-screen flex items-center justify-center text-white relative" style="background-image: url('images/bg\ img.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    
+    <div id="greeting" class="absolute top-4 left-4 text-lg font-semibold">Hello, Name</div>
+    
+    <div class="relative text-center">
+        <h1 class="text-4xl font-bold mb-6">Plan Your Perfect Trip</h1>
+        <div class="flex justify-center w-full px-4">
+            <input type="text" class="w-3/4 sm:w-1/2 p-4 text-black rounded-l-lg focus:outline-none text-lg" placeholder="Enter a city...">
+            <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg rounded-r-lg">Search</button>
+        </div>
+    </div>
+</body>
+</html>

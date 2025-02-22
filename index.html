@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Counter</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Counter</h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function saveName() {
+            const name = document.getElementById("userNameInput").value.trim();
+            if (name) {
+                localStorage.setItem("userName", name);
+                window.location.href = "landing.html";
+            }
+        }
 
-  <h3 id="countLabel">0</h3>
-  <div class="btn"> <button id="decBtn">Decrease</button>
-    <button id="resBtn">Reset</button>
-    <button id="incBtn">Increase</button>
-    <script src="index.js"></script>
-  </div>
- 
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("userNameInput").addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    saveName();
+                }
+            });
+        });
+    </script>
+</head>
+<body class="bg-cover bg-center h-screen flex items-center justify-center text-white" style="background-image: url('images/loginBG.jpg');">
+    <div class="bg-gray-900 bg-opacity-70 p-8 rounded-lg shadow-2xl text-center w-96">
+        <h2 class="text-4xl font-bold mb-4 text-yellow-400">Welcome!</h2>
+        <p class="text-lg mb-4 text-gray-300">Enter your name to personalize your experience</p>
+        <input type="text" id="userNameInput" class="p-3 border-none rounded w-full text-black text-center focus:outline-none" placeholder="Your name...">
+        <button onclick="saveName()" class="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg text-lg font-semibold w-full">Continue</button>
+    </div>
 </body>
 </html>
